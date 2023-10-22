@@ -43,17 +43,15 @@ namespace agenda_contatos.Controllers
                     await _contatoRepository.AddContato(item);
                     var response = new { message = "O contato foi criado com sucesso." };
                     return Ok(response);
-                    _logger.LogInformation("Criação de contato");
                 }
                 else
                 {
-                    return BadRequest(ModelState);
+                    return UnprocessableEntity(ModelState);
                 }
             }
             catch (Exception e)
             {
                 return BadRequest(e.Message);
-                _logger.LogError(e.Message);
             }
         }
 
