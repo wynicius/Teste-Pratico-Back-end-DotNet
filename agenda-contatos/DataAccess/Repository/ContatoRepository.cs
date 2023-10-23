@@ -33,19 +33,19 @@ namespace agenda_contatos.DataAccess.Repository
             return await query.FirstOrDefaultAsync();
         }
 
-        public async Task AddContato(Contato contato)
+        public async Task AdicionarContato(Contato contato)
         {
             await _context.Contatos.AddAsync(contato);
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateContato(Contato contato)
+        public async Task AtualizarContato(Contato contato)
         {
             _context.Contatos.Update(contato);
             await _context.SaveChangesAsync();
         }
 
-        public async Task RemoveContato(Contato contato)
+        public async Task ExcluirContato(Contato contato)
         {
             _context.Contatos.Remove(contato);
             await _context.SaveChangesAsync();

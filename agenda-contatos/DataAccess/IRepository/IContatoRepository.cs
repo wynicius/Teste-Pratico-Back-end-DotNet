@@ -9,9 +9,9 @@ namespace agenda_contatos.DataAccess.IRepository
     {
         Task<List<Contato>> ListarTodosContatos();
         Task<Contato> ListarContatoPorId(Expression<Func<Contato,bool>> filter);
-        Task AddContato(Contato contato);
-        Task UpdateContato(Contato contato);
-        Task RemoveContato(Contato contato);
+        Task AdicionarContato(Contato contato);
+        Task AtualizarContato(Contato contato);
+        Task ExcluirContato(Contato contato);
     }
 }
  

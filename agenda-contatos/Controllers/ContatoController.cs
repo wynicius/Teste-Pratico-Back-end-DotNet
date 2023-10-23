@@ -20,7 +20,7 @@ namespace agenda_contatos.Controllers
 
         [HttpGet]
         [Route("api/listartodos")]
-        public async Task<IActionResult> GetTodosContatos()
+        public async Task<IActionResult> ListarTodosContatos()
         {
             var data = await _contatoRepository.ListarTodosContatos();
             if (data == null)
@@ -30,17 +30,30 @@ namespace agenda_contatos.Controllers
             return Ok(data);
         }
 
+        [HttpGet]
+        [Route("api/listar/{id}")]
+        public async Task<IActionResult> ListarContatoPorId(int id)
+        {
+            var data = await _contatoRepository.ListarContatoPorId(c => c.Id == id);
+            if (data == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(data);
+        }
+
         [HttpPost]
         [Route("api/criar")]
         [Consumes("application/json")]
-        public async Task<IActionResult> Create(Contato item)
+        public async Task<IActionResult> Criar(Contato item)
         {
             try
             {
                 Console.WriteLine(item.Email);
                 if (ModelState.IsValid)
                 {
-                    await _contatoRepository.AddContato(item);
+                    await _contatoRepository.AdicionarContato(item);
                     var response = new { message = "O contato foi criado com sucesso." };
                     return Ok(response);
                 }
@@ -56,29 +69,29 @@ namespace agenda_contatos.Controllers
         }
 
         [HttpPut]
-        [Route("api/editar/{id}")]
+        [Route("api/editar/")]
         [Consumes("application/json")]
-        public async Task<IActionResult> Update(int id, [FromBody] Contato obj)
+        public async Task<IActionResult> Atualizar(Contato item)
         {
-            if (id != obj.Id)
-            {
-                return BadRequest();
-            }
+            // if (id != obj.Id)
+            // {
+            //     return BadRequest();
+            // }
 
             if (ModelState.IsValid)
             {
-                Contato? contato = await _contatoRepository.ListarContatoPorId(c => c.Id == id);
+                var contato = await _contatoRepository.ListarContatoPorId(c => c.Id == item.Id);
 
                 if (contato == null)
                 {
                     return NotFound();
                 }
 
-                contato.Nome = obj.Nome;
-                contato.Email = obj.Email;
-                contato.Telefone = obj.Telefone;
+                contato.Nome = item.Nome;
+                contato.Email = item.Email;
+                contato.Telefone = item.Telefone;
 
-                await _contatoRepository.UpdateContato(contato);
+                await _contatoRepository.AtualizarContato(contato);
 
                 var response = new { message = "O contato foi atualizado com sucesso." };
                 return Ok(response);
@@ -88,8 +101,8 @@ namespace agenda_contatos.Controllers
         }
 
         [HttpDelete]
-        [Route("api/deletar/{id}")]
-        public async Task<IActionResult> Delete(int id)
+        [Route("api/excluir/[id]")]
+        public async Task<IActionResult> Excluir(int id)
         {
             try
             {
@@ -100,7 +113,7 @@ namespace agenda_contatos.Controllers
                     return NotFound();
                 }
 
-                await _contatoRepository.RemoveContato(contato);
+                await _contatoRepository.ExcluirContato(contato);
 
                 var response = new { message = "O contato foi deletado com sucesso." };
                 return Ok(response);
