@@ -103,12 +103,12 @@ namespace agenda_contatos.Controllers
         }
 
         [HttpDelete]
-        [Route("api/excluir/")]
+        [Route("api/excluir/{id}")]
         public async Task<IActionResult> Excluir(int id)
         {
             try
             {
-                Contato? contato = await _contatoService.ListarContatoPorId(c => c.Id == id);
+                var contato = await _contatoService.ListarContatoPorId(c => c.Id == id);
 
                 if (contato == null)
                 {
