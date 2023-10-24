@@ -1,6 +1,5 @@
 using agenda_contatos.Models;
-using agenda_contatos.DataAccess.Repository;
-using agenda_contatos.DataAccess.IRepository;
+using agenda_contatos.DataAccess.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using agenda_contatos.DTOs;
@@ -11,13 +10,13 @@ namespace agenda_contatos.Controllers
     [ApiController]
     public class ContatoController : ControllerBase
     {
-        private readonly IContatoRepository _contatoRepository;
-        private readonly ILogger<ContatoRepository> _logger;
+        private readonly IContatoService _contatoService;
+        private readonly ILogger<ContatoService> _logger;
         private readonly IMapper _mapper;
         
-        public ContatoController(IContatoRepository repository, ILogger<ContatoRepository> logger, IMapper mapper)
+        public ContatoController(IContatoService contatoService, ILogger<ContatoService> logger, IMapper mapper)
         {
-            _contatoRepository = repository;
+            _contatoService = contatoService;
             _logger = logger;
             _mapper = mapper;
         }
@@ -26,7 +25,7 @@ namespace agenda_contatos.Controllers
         [Route("api/listartodos")]
         public async Task<IActionResult> ListarTodosContatos()
         {
-            var contatos = await _contatoRepository.ListarTodosContatos();
+            var contatos = await _contatoService.ListarTodosContatos();
             if (contatos == null)
             {
                 return NotFound();
@@ -41,7 +40,7 @@ namespace agenda_contatos.Controllers
         [Route("api/listar/{id}")]
         public async Task<IActionResult> ListarContatoPorId(int id)
         {
-            var contato = await _contatoRepository.ListarContatoPorId(c => c.Id == id);
+            var contato = await _contatoService.ListarContatoPorId(c => c.Id == id);
             if (contato == null)
             {
                 return NotFound();
@@ -61,7 +60,7 @@ namespace agenda_contatos.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    await _contatoRepository.AdicionarContato(contato);
+                    await _contatoService.AdicionarContato(contato);
                     var response = new { message = "O contato foi criado com sucesso." };
                     return Ok(response);
                 }
@@ -83,7 +82,7 @@ namespace agenda_contatos.Controllers
         {
             if (ModelState.IsValid)
             {
-                var contato = await _contatoRepository.ListarContatoPorId(c => c.Id == item.Id);
+                var contato = await _contatoService.ListarContatoPorId(c => c.Id == item.Id);
 
                 if (contato == null)
                 {
@@ -94,7 +93,7 @@ namespace agenda_contatos.Controllers
                 contato.Email = item.Email;
                 contato.Telefone = item.Telefone;
 
-                await _contatoRepository.AtualizarContato(contato);
+                await _contatoService.AtualizarContato(contato);
 
                 var response = new { message = "O contato foi atualizado com sucesso." };
                 return Ok(response);
@@ -109,14 +108,14 @@ namespace agenda_contatos.Controllers
         {
             try
             {
-                Contato? contato = await _contatoRepository.ListarContatoPorId(c => c.Id == id);
+                Contato? contato = await _contatoService.ListarContatoPorId(c => c.Id == id);
 
                 if (contato == null)
                 {
                     return NotFound();
                 }
 
-                await _contatoRepository.ExcluirContato(contato);
+                await _contatoService.ExcluirContato(contato);
 
                 var response = new { message = "O contato foi deletado com sucesso." };
                 return Ok(response);

@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using agenda_contatos.DataAccess.IRepository;
 using agenda_contatos.Models;
 using Microsoft.EntityFrameworkCore;
 

@@ -1,7 +1,7 @@
 using agenda_contatos.Models;
 using agenda_contatos.DataAccess;
 using agenda_contatos.DataAccess.Repository;
-using agenda_contatos.DataAccess.IRepository;
+using agenda_contatos.DataAccess.Services;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Serilog.Sinks.File;
@@ -18,6 +18,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
 builder.Services.AddScoped<IContatoRepository, ContatoRepository>();
+builder.Services.AddScoped<IContatoService, ContatoService>();
 builder.Services.AddAutoMapper(typeof(EntitiesToDTOMappingProfile));
 
 string logpath = builder.Configuration.GetSection("Logging:Logpath").Value;
