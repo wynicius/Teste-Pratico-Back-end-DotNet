@@ -5,6 +5,7 @@ using agenda_contatos.DataAccess.IRepository;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Serilog.Sinks.File;
+using agenda_contatos.Mappings;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,10 +14,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<IContatoRepository, ContatoRepository>();
 builder.Services.AddDbContext<ApplicationDbContext>(options => 
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
+builder.Services.AddScoped<IContatoRepository, ContatoRepository>();
+builder.Services.AddAutoMapper(typeof(EntitiesToDTOMappingProfile));
 
 string logpath = builder.Configuration.GetSection("Logging:Logpath").Value;
 var _logger = new LoggerConfiguration()
@@ -35,6 +37,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
 
 app.UseHttpsRedirection();
 

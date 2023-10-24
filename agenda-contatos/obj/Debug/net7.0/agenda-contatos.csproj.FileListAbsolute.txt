@@ -1,10 +1,3 @@
-C:\Users\User1\Desktop\agenda-contatos\agenda-contatos\obj\Debug\net7.0\agenda-contatos.csproj.AssemblyReference.cache
-C:\Users\User1\Desktop\agenda-contatos\agenda-contatos\obj\Debug\net7.0\agenda-contatos.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\User1\Desktop\agenda-contatos\agenda-contatos\obj\Debug\net7.0\agenda-contatos.AssemblyInfoInputs.cache
-C:\Users\User1\Desktop\agenda-contatos\agenda-contatos\obj\Debug\net7.0\agenda-contatos.AssemblyInfo.cs
-C:\Users\User1\Desktop\agenda-contatos\agenda-contatos\obj\Debug\net7.0\agenda-contatos.csproj.CoreCompileInputs.cache
-C:\Users\User1\Desktop\agenda-contatos\agenda-contatos\obj\Debug\net7.0\agenda-contatos.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\User1\Desktop\agenda-contatos\agenda-contatos\obj\Debug\net7.0\agenda-contatos.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\User1\Desktop\agenda-contatos\agenda-contatos\bin\Debug\net7.0\appsettings.Development.json
 C:\Users\User1\Desktop\agenda-contatos\agenda-contatos\bin\Debug\net7.0\appsettings.json
 C:\Users\User1\Desktop\agenda-contatos\agenda-contatos\bin\Debug\net7.0\agenda-contatos.exe
@@ -12,6 +5,8 @@ C:\Users\User1\Desktop\agenda-contatos\agenda-contatos\bin\Debug\net7.0\agenda-c
 C:\Users\User1\Desktop\agenda-contatos\agenda-contatos\bin\Debug\net7.0\agenda-contatos.runtimeconfig.json
 C:\Users\User1\Desktop\agenda-contatos\agenda-contatos\bin\Debug\net7.0\agenda-contatos.dll
 C:\Users\User1\Desktop\agenda-contatos\agenda-contatos\bin\Debug\net7.0\agenda-contatos.pdb
+C:\Users\User1\Desktop\agenda-contatos\agenda-contatos\bin\Debug\net7.0\AutoMapper.dll
+C:\Users\User1\Desktop\agenda-contatos\agenda-contatos\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\User1\Desktop\agenda-contatos\agenda-contatos\bin\Debug\net7.0\Azure.Core.dll
 C:\Users\User1\Desktop\agenda-contatos\agenda-contatos\bin\Debug\net7.0\Azure.Identity.dll
 C:\Users\User1\Desktop\agenda-contatos\agenda-contatos\bin\Debug\net7.0\Humanizer.dll
@@ -69,6 +64,13 @@ C:\Users\User1\Desktop\agenda-contatos\agenda-contatos\bin\Debug\net7.0\runtimes
 C:\Users\User1\Desktop\agenda-contatos\agenda-contatos\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
 C:\Users\User1\Desktop\agenda-contatos\agenda-contatos\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\User1\Desktop\agenda-contatos\agenda-contatos\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Users\User1\Desktop\agenda-contatos\agenda-contatos\obj\Debug\net7.0\agenda-contatos.csproj.AssemblyReference.cache
+C:\Users\User1\Desktop\agenda-contatos\agenda-contatos\obj\Debug\net7.0\agenda-contatos.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User1\Desktop\agenda-contatos\agenda-contatos\obj\Debug\net7.0\agenda-contatos.AssemblyInfoInputs.cache
+C:\Users\User1\Desktop\agenda-contatos\agenda-contatos\obj\Debug\net7.0\agenda-contatos.AssemblyInfo.cs
+C:\Users\User1\Desktop\agenda-contatos\agenda-contatos\obj\Debug\net7.0\agenda-contatos.csproj.CoreCompileInputs.cache
+C:\Users\User1\Desktop\agenda-contatos\agenda-contatos\obj\Debug\net7.0\agenda-contatos.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\User1\Desktop\agenda-contatos\agenda-contatos\obj\Debug\net7.0\agenda-contatos.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\User1\Desktop\agenda-contatos\agenda-contatos\obj\Debug\net7.0\staticwebassets\msbuild.agenda-contatos.Microsoft.AspNetCore.StaticWebAssets.props
 C:\Users\User1\Desktop\agenda-contatos\agenda-contatos\obj\Debug\net7.0\staticwebassets\msbuild.build.agenda-contatos.props
 C:\Users\User1\Desktop\agenda-contatos\agenda-contatos\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.agenda-contatos.props

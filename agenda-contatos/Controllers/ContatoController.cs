@@ -3,6 +3,8 @@ using agenda_contatos.DataAccess.Repository;
 using agenda_contatos.DataAccess.IRepository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using agenda_contatos.DTOs;
+using AutoMapper;
 
 namespace agenda_contatos.Controllers
 {
@@ -11,49 +13,55 @@ namespace agenda_contatos.Controllers
     {
         private readonly IContatoRepository _contatoRepository;
         private readonly ILogger<ContatoRepository> _logger;
+        private readonly IMapper _mapper;
         
-        public ContatoController(IContatoRepository repository, ILogger<ContatoRepository> logger)
+        public ContatoController(IContatoRepository repository, ILogger<ContatoRepository> logger, IMapper mapper)
         {
             _contatoRepository = repository;
             _logger = logger;
+            _mapper = mapper;
         }
 
         [HttpGet]
         [Route("api/listartodos")]
         public async Task<IActionResult> ListarTodosContatos()
         {
-            var data = await _contatoRepository.ListarTodosContatos();
-            if (data == null)
+            var contatos = await _contatoRepository.ListarTodosContatos();
+            if (contatos == null)
             {
                 return NotFound();
             }
-            return Ok(data);
+
+            var contatosDTO = _mapper.Map<ContatoDTO[]>(contatos);
+
+            return Ok(contatosDTO);
         }
 
         [HttpGet]
         [Route("api/listar/{id}")]
         public async Task<IActionResult> ListarContatoPorId(int id)
         {
-            var data = await _contatoRepository.ListarContatoPorId(c => c.Id == id);
-            if (data == null)
+            var contato = await _contatoRepository.ListarContatoPorId(c => c.Id == id);
+            if (contato == null)
             {
                 return NotFound();
             }
 
-            return Ok(data);
+            var clienteDTO = _mapper.Map<ContatoDTO>(contato);
+
+            return Ok(clienteDTO);
         }
 
         [HttpPost]
         [Route("api/criar")]
         [Consumes("application/json")]
-        public async Task<IActionResult> Criar(Contato item)
+        public async Task<IActionResult> Criar(Contato contato)
         {
             try
             {
-                Console.WriteLine(item.Email);
                 if (ModelState.IsValid)
                 {
-                    await _contatoRepository.AdicionarContato(item);
+                    await _contatoRepository.AdicionarContato(contato);
                     var response = new { message = "O contato foi criado com sucesso." };
                     return Ok(response);
                 }
@@ -73,11 +81,6 @@ namespace agenda_contatos.Controllers
         [Consumes("application/json")]
         public async Task<IActionResult> Atualizar(Contato item)
         {
-            // if (id != obj.Id)
-            // {
-            //     return BadRequest();
-            // }
-
             if (ModelState.IsValid)
             {
                 var contato = await _contatoRepository.ListarContatoPorId(c => c.Id == item.Id);
@@ -101,7 +104,7 @@ namespace agenda_contatos.Controllers
         }
 
         [HttpDelete]
-        [Route("api/excluir/[id]")]
+        [Route("api/excluir/")]
         public async Task<IActionResult> Excluir(int id)
         {
             try
