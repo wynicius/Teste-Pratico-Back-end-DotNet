@@ -60,3 +60,8 @@ $ https://localhost:5298
  - DELETE /api/excluir/{id}: exclui um contato pelo ID.
 
 # [Conheça o Front-end do projeto clicando aqui](https://github.com/wynicius/Teste-Pratico-Front-end-Vuejs)
+
+# Autor:
+
+![Foto Perfil]([http://url/to/img.png](https://imgbox.com/lOfUH5wx)https://imgbox.com/lOfUH5wx)
+
