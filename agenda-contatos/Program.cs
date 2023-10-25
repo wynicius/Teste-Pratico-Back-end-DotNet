@@ -21,7 +21,7 @@ builder.Services.AddScoped<IContatoRepository, ContatoRepository>();
 builder.Services.AddScoped<IContatoService, ContatoService>();
 builder.Services.AddAutoMapper(typeof(EntitiesToDTOMappingProfile));
 
-string logpath = builder.Configuration.GetSection("Logging:Logpath").Value;
+string logpath = builder.Configuration.GetSection("Logging:Logpath").Value ?? "logs/log.txt";
 var _logger = new LoggerConfiguration()
     .MinimumLevel.Information()
     .MinimumLevel.Override("microsoft", Serilog.Events.LogEventLevel.Warning)

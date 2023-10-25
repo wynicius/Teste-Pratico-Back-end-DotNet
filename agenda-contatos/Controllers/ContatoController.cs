@@ -1,6 +1,5 @@
 using agenda_contatos.Models;
 using agenda_contatos.DataAccess.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using agenda_contatos.DTOs;
 using AutoMapper;

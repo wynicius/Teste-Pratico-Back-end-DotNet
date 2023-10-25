@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
 using agenda_contatos.Models;
 using Microsoft.EntityFrameworkCore;
@@ -29,7 +27,9 @@ namespace agenda_contatos.DataAccess.Repository
         {
             IQueryable<Contato> query = dbSet;
             query = query.Where(filter);
-            return await query.FirstOrDefaultAsync();
+            var contato = await query.FirstOrDefaultAsync()
+                ?? throw new NullReferenceException("O contato não foi encontrado.");
+            return contato;
         }
 
         public async Task AdicionarContato(Contato contato)
