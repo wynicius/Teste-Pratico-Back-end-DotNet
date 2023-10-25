@@ -63,4 +63,4 @@ $ https://localhost:5298
 
 # Autor:
 
-![Foto Perfil](http://url/to/img.png)
+![Foto Perfil](https://avatars.githubusercontent.com/u/111314452?v=4)
