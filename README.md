@@ -47,7 +47,7 @@ $ dotnet build
 
 ```sh
 # Acesse a API em:
-$ https://localhost:5001.
+$ https://localhost:5298
 ```
 
 # Testando a API
