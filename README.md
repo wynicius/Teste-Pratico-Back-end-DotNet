@@ -34,7 +34,7 @@
 
 ```sh
 # clonar este repositório
-$ git clone https://github.com/wynicius/Teste-Pratico-Back-end-Vue.js
+$ git clone https://github.com/wynicius/Teste-Pratico-Back-end-DotNet
 
 # Abra o prompt de comando e navegue até a pasta:
 $ cd agenda-contatos
