@@ -4,6 +4,8 @@
 # Back-end do projeto Agenda Blue
 
 ### Este é um projeto de exemplo que implementa uma API RESTful para gerenciar contatos em uma agenda, com um CRUD simples. O projeto foi desenvolvido usando o ASP.NET Core 7.0 e o banco de dados SQL Server.
+## [Conheça o Front-end do projeto clicando aqui](https://github.com/wynicius/Teste-Pratico-Front-end-Vue.js)
+
 
 # Estrutura do projeto
 
@@ -56,3 +58,5 @@ $ https://localhost:5001.
  - POST /api/criar: cria um novo contato.
  - PUT /api/editar: atualiza um contato existente.
  - DELETE /api/excluir/{id}: exclui um contato pelo ID.
+
+# [Conheça o Front-end do projeto clicando aqui](https://github.com/wynicius/Teste-Pratico-Front-end-Vue.js)
