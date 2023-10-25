@@ -1,5 +1,5 @@
 # Olá, Seja Muito Bem Vindo(a)! :wave:
-### Me chamo Wynicius e este é o meu projeto para o teste prático da Blue Technology! :smiley:
+### Me chamo Wynicius e este é o Back-end do meu teste prático para a seletiva de estágio da Blue Technology! :smiley:
 
 # Back-end do projeto Agenda Blue
 
@@ -23,6 +23,7 @@
 ## Swagger:
 
 ### O projeto usa o Swagger para documentar a API. A documentação da API pode ser acessada em /swagger/index.html.
+![Swagger](https://twitter.com/uiniciuss/status/1717230254886891869/photo/1)
 
 # Tech
 
