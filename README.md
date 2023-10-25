@@ -63,5 +63,5 @@ $ https://localhost:5298
 
 # Autor:
 
-![Foto Perfil]([http://url/to/img.png](https://imgbox.com/lOfUH5wx)https://imgbox.com/lOfUH5wx)
+![Foto Perfil](http://url/to/img.png](https://imgbox.com/lOfUH5wx)https://imgbox.com/lOfUH5wx)
 
