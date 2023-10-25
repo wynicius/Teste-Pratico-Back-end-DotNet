@@ -23,7 +23,7 @@
 ## Swagger:
 
 ### O projeto usa o Swagger para documentar a API. A documentação da API pode ser acessada em /swagger/index.html.
-![Swagger](https://twitter.com/uiniciuss/status/1717230254886891869/photo/1)
+![Swagger](https://ibb.co/FqMH21D)
 
 # Tech
 
