@@ -63,4 +63,4 @@ $ https://localhost:5298
 
 # Autor:
 
-![Foto Perfil](https://avatars.githubusercontent.com/u/111314452?v=4)
+![Foto Perfil](https://avatars.githubusercontent.com/u/111314452?v=4) [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://linkedin.com/in/wynicius) 
