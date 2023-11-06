@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "A0RCUswWU+vIGqUtc/vN7jQnek/FP/igrA9YXO8lMt/gWwgXpPQUVNYQ8mLyt5PEho2/p7HB34PYtK26DvYYtA==",
+  "dgSpecHash": "kEcEewS3wU1B7EWysdelOQc0vWz0GyAxFOGvR+rMDvpz7UFdQr7g2reUoBDyucm990xRlzSW3/Wisl+MutX/Bw==",
   "success": true,
   "projectFilePath": "C:\\Users\\User1\\Desktop\\agenda-contatos\\agenda-contatos\\agenda-contatos.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,7 @@
     "C:\\Users\\User1\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\User1\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
     "C:\\Users\\User1\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\User1\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\7.0.13\\microsoft.aspnetcore.authentication.jwtbearer.7.0.13.nupkg.sha512",
     "C:\\Users\\User1\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.12\\microsoft.aspnetcore.openapi.7.0.12.nupkg.sha512",
     "C:\\Users\\User1\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\User1\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

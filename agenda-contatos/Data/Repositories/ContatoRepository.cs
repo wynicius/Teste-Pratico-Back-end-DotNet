@@ -2,7 +2,7 @@ using System.Linq.Expressions;
 using agenda_contatos.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace agenda_contatos.DataAccess.Repository
+namespace agenda_contatos.DataAccess.Repositories
 {
     public class ContatoRepository : IContatoRepository
     {
@@ -13,7 +13,6 @@ namespace agenda_contatos.DataAccess.Repository
         {
             _context = context;
             this.dbSet = _context.Set<Contato>();    
-
         }
 
         public async Task<List<Contato>> ListarTodosContatos()

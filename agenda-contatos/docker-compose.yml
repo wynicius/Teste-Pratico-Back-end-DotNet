@@ -3,19 +3,9 @@ services:
     image: ${DOCKER_REGISTRY-}agenda-contatos
     build:
       context: .
-      dockerfile: .
-    ports:
-      - "5298:5298"
-    depends_on:
-      - sqldata
-    
-  front-vue:
-    image: ${DOCKER_REGISTRY-}front-vue
-    build:
-      context: ..\..\front-vue
       dockerfile: Dockerfile
     ports:
-      - "8080:8080"
+      - "5298:5298"
     depends_on:
       - sqldata
 
@@ -25,7 +15,7 @@ services:
       - SA_PASSWORD=SqlDocker*2023
       - ACCEPT_EULA=Y
     volumes:
-      - ../sqlserverdocker:var/opt/mssql/data
+      - c:/users/user1/desktop/agenda-contatos/sqlserverdocker:var/opt/mssql/data
     ports:
       - "1433:1433"
   

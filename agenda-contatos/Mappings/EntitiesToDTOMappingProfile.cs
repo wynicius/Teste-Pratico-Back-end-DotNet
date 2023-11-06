@@ -9,6 +9,7 @@ namespace agenda_contatos.Mappings
         public EntitiesToDTOMappingProfile()
         {
             CreateMap<Contato, ContatoDTO>().ReverseMap();
+            CreateMap<Usuario, UsuarioAuthDTO>().ReverseMap();
 
         }
     }

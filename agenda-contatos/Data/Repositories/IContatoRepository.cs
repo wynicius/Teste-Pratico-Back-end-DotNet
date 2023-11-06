@@ -1,7 +1,7 @@
 using System.Linq.Expressions;
 using agenda_contatos.Models;
 
-namespace agenda_contatos.DataAccess.Repository
+namespace agenda_contatos.DataAccess.Repositories
 {
     public interface IContatoRepository
     {
