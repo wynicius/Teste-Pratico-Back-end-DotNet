@@ -35,7 +35,7 @@ namespace agenda_contatos.Controllers
                 }
                 else
                 {
-                    return UnprocessableEntity(ModelState);
+                    return UnprocessableEntity(new {message = "Há algum erro com os dados enviados ou com o processamento deles."});
                 }
             }
             catch (Exception)

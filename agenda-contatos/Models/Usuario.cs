@@ -1,4 +1,6 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace agenda_contatos.Models
 {
@@ -21,8 +23,6 @@ namespace agenda_contatos.Models
         [Required(ErrorMessage = "Ter uma senha é obrigatório.")]
         [StringLength(20, MinimumLength = 6, ErrorMessage = "O campo Senha deve ter entre 6 e 20 caracteres.")]
         public string? Senha { get; set; }
-
         public string? Role { get; set; }
-        
     }
 }

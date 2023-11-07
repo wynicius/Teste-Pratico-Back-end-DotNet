@@ -8,42 +8,39 @@ using System.Text.Json;
 using AutoMapper;
 using agenda_contatos.DTOs;
 
-namespace agenda_contatos.Controllers;
-
-[Route("api/autenticacao")]
-public class AutenticacaoController : ControllerBase
+namespace agenda_contatos.Controllers
 {
-    private readonly IAuthRepository _iAuthRepository;
-    private readonly IMapper _mapper;
-    public AutenticacaoController(IAuthRepository iAuthRepository, IMapper mapper)
+    [Route("api/autenticacao")]
+    public class AutenticacaoController : ControllerBase
     {
-        _iAuthRepository = iAuthRepository;
-        _mapper = mapper;
-    } 
+        private readonly IAuthRepository _authRepository;
+        private readonly TokenService _tokenService;
 
-    [HttpPost]
-    [Route("auth")]
-    [AllowAnonymous]
-    public async Task<ActionResult<dynamic>> Autenticacao([FromBody] AuthDTO dadosAcesso )
-    {
-        try
+        public AutenticacaoController(IAuthRepository authRepository, TokenService tokenService)
         {
-            if (ModelState.IsValid)
+            _authRepository = authRepository;
+            _tokenService = tokenService;
+        } 
+
+        [HttpPost("auth")]
+        [AllowAnonymous]
+        public async Task<ActionResult<dynamic>> Autenticacao([FromBody] AuthDTO dadosAcesso )
+        {
+            try
             {
-                var usuario = await _iAuthRepository.GetUsuario( x => 
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
+                var usuario = await _authRepository.GetUsuario( x => 
                     x.Email.ToLower() == dadosAcesso.Email.ToLower() && 
                     x.Senha.ToLower() == dadosAcesso.Senha.ToLower()
                 );
 
-                if(usuario == null)
-                {
-                    return NotFound(new { 
-                        message = $"Não encontrou o {dadosAcesso.Email} e a {dadosAcesso.Senha} informados." 
-                    });
-                }
-                var tokenService = new TokenService();
-                var token = tokenService.GenerateToken(usuario);
+                var token = _tokenService.GenerateToken(usuario);
                 usuario.Senha = "";
+                
                 return Ok(new
                     {
                         usuario = usuario,
@@ -51,36 +48,30 @@ public class AutenticacaoController : ControllerBase
                     }
                 );
             }
-            else
+            catch (NullReferenceException ex)
             {
-                return BadRequest(new { message = "Não foi possível autenticar o usuário. 1" });
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
         }
-        catch(Exception error)
-        {
-            Console.WriteLine(error.Message);
-            Console.WriteLine(error.StackTrace);
-            return BadRequest(error.Message);
-        }
+
+        [HttpGet("anonimo")]
+        [AllowAnonymous]
+        public string Anonimo() => "Anonimo";
+
+        [HttpGet("autenticado")]
+        [Authorize]
+        public string Autenticado() => String.Format("Autenticado - {0}", User.Identity.Name);
+
+        [HttpGet("usuario")]
+        [Authorize(Roles = "usuario, administrador")]
+        public string Usuario() => "usuario";
+
+        [HttpGet("administrador")]
+        [Authorize(Roles = "administrador")]
+        public string Admin() => "Admin";
     }
-
-    [HttpGet]
-    [Route("anonimo")]
-    [AllowAnonymous]
-    public string Anonimo() => "Anonimo";
-
-    [HttpGet]
-    [Route("autenticado")]
-    [Authorize]
-    public string Autenticado() => String.Format("Autenticado - {0}", User.Identity.Name);
-
-    [HttpGet]
-    [Route("usuario")]
-    [Authorize(Roles = "usuario, administrador")]
-    public string Usuario() => "usuario";
-
-    [HttpGet]
-    [Route("administrador")]
-    [Authorize(Roles = "administrador")]
-    public string Admin() => "Admin";
 }
