@@ -53,12 +53,26 @@ $ https://localhost:5298
 
 # Testando a API
 
-### Aqui estão as rotas disponíveis na API:
- - GET /api/listartodos: lista todos os contatos.
- - GET /api/listar/{id}: lista um contato pelo ID.
- - POST /api/criar: cria um novo contato.
- - PUT /api/editar: atualiza um contato existente.
- - DELETE /api/excluir/{id}: exclui um contato pelo ID.
+## Aqui estão as rotas disponíveis na API:
+
+### Autenticação
+- POST /api/autenticacao/auth: Autentica o usuário, com identificação no DB e o token.
+- GET /api/autenticacao/anonimo: Autentica o usuário anonimo.
+- GET /api/autenticacao/autenticado: Verifica se o usuário está autenticado e retorno o seu nome.
+- GET /api/autenticacao/usuario: verifica se o usuário é um usuário simples.
+- GET /api/autenticacao/administrador: verifica se o usuário é um administrador.
+
+### Usuarios
+- GET /api/usuario/listar{email}: lista um usuário pelo Email.
+- POST /api/usuario/criarUsuario: cria um novo usuário.
+- DELETE /api/usuario/excluir/{id}: exclui um usuário pelo ID.
+
+### Contatos
+- GET /api/listartodos: lista todos os contatos.
+- GET /api/listar/{id}: lista um contato pelo ID.
+- POST /api/criar: cria um novo contato.
+- PUT /api/editar: atualiza um contato existente.
+- DELETE /api/excluir/{id}: exclui um contato pelo ID.
 
 # [Conheça o Front-end do projeto clicando aqui](https://github.com/wynicius/Teste-Pratico-Front-end-Vuejs)
 
