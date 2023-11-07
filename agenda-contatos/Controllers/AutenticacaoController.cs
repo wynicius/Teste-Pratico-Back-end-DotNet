@@ -13,24 +13,24 @@ namespace agenda_contatos.Controllers;
 [Route("api/autenticacao")]
 public class AutenticacaoController : ControllerBase
 {
-    private readonly IUsuarioRepository _iUsuarioRepository;
+    private readonly IAuthRepository _iAuthRepository;
     private readonly IMapper _mapper;
-    public AutenticacaoController(IUsuarioRepository iusuarioRepository, IMapper mapper)
+    public AutenticacaoController(IAuthRepository iAuthRepository, IMapper mapper)
     {
-        _iUsuarioRepository = iusuarioRepository;
+        _iAuthRepository = iAuthRepository;
         _mapper = mapper;
     } 
 
     [HttpPost]
     [Route("auth")]
     [AllowAnonymous]
-    public async Task<ActionResult<dynamic>> Autenticacao([FromBody] UsuarioAuthDTO dadosAcesso )
+    public async Task<ActionResult<dynamic>> Autenticacao([FromBody] AuthDTO dadosAcesso )
     {
         try
         {
             if (ModelState.IsValid)
             {
-                var usuario = await _iUsuarioRepository.GetUsuario( x => 
+                var usuario = await _iAuthRepository.GetUsuario( x => 
                     x.Email.ToLower() == dadosAcesso.Email.ToLower() && 
                     x.Senha.ToLower() == dadosAcesso.Senha.ToLower()
                 );
@@ -76,11 +76,11 @@ public class AutenticacaoController : ControllerBase
 
     [HttpGet]
     [Route("usuario")]
-    [Authorize(Roles = "usuario, admin")]
+    [Authorize(Roles = "usuario, administrador")]
     public string Usuario() => "usuario";
 
     [HttpGet]
-    [Route("admin")]
-    [Authorize(Roles = "admin")]
+    [Route("administrador")]
+    [Authorize(Roles = "administrador")]
     public string Admin() => "Admin";
 }

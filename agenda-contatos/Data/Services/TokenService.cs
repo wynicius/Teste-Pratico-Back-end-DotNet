@@ -8,7 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 namespace agenda_contatos.DataAccess.Services;
 public class TokenService
 {
-    public string GenerateToken(UsuarioAuthDTO usuario)
+    public string GenerateToken(AuthDTO usuario)
 
     {
         // Cria uma instância do token, em formato de string, com base na chave de segurança (token).

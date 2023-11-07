@@ -9,14 +9,12 @@ namespace agenda_contatos.Controllers
     [ApiController]
     public class ContatoController : ControllerBase
     {
-        private readonly IContatoService _contatoService;
-        private readonly ILogger<ContatoService> _logger;
+        private readonly IContatoService _iContatoService;
         private readonly IMapper _mapper;
         
-        public ContatoController(IContatoService contatoService, ILogger<ContatoService> logger, IMapper mapper)
+        public ContatoController(IContatoService iContatoService, IMapper mapper)
         {
-            _contatoService = contatoService;
-            _logger = logger;
+            _iContatoService = iContatoService;
             _mapper = mapper;
         }
 
@@ -24,7 +22,7 @@ namespace agenda_contatos.Controllers
         [Route("api/listartodos")]
         public async Task<IActionResult> ListarTodosContatos()
         {
-            var contatos = await _contatoService.ListarTodosContatos();
+            var contatos = await _iContatoService.ListarTodosContatos();
             if (contatos == null)
             {
                 return NotFound();
@@ -39,7 +37,7 @@ namespace agenda_contatos.Controllers
         [Route("api/listar/{id}")]
         public async Task<IActionResult> ListarContatoPorId(int id)
         {
-            var contato = await _contatoService.ListarContatoPorId(c => c.Id == id);
+            var contato = await _iContatoService.ListarContatoPorId(c => c.Id == id);
             if (contato == null)
             {
                 return NotFound();
@@ -59,7 +57,7 @@ namespace agenda_contatos.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    await _contatoService.AdicionarContato(contato);
+                    await _iContatoService.AdicionarContato(contato);
                     var response = new { message = "O contato foi criado com sucesso." };
                     return Ok(response);
                 }
@@ -81,7 +79,7 @@ namespace agenda_contatos.Controllers
         {
             if (ModelState.IsValid)
             {
-                var contato = await _contatoService.ListarContatoPorId(c => c.Id == item.Id);
+                var contato = await _iContatoService.ListarContatoPorId(c => c.Id == item.Id);
 
                 if (contato == null)
                 {
@@ -92,7 +90,7 @@ namespace agenda_contatos.Controllers
                 contato.Email = item.Email;
                 contato.Telefone = item.Telefone;
 
-                await _contatoService.AtualizarContato(contato);
+                await _iContatoService.AtualizarContato(contato);
 
                 var response = new { message = "O contato foi atualizado com sucesso." };
                 return Ok(response);
@@ -107,14 +105,14 @@ namespace agenda_contatos.Controllers
         {
             try
             {
-                var contato = await _contatoService.ListarContatoPorId(c => c.Id == id);
+                var contato = await _iContatoService.ListarContatoPorId(c => c.Id == id);
 
                 if (contato == null)
                 {
                     return NotFound();
                 }
 
-                await _contatoService.ExcluirContato(contato);
+                await _iContatoService.ExcluirContato(contato);
 
                 var response = new { message = "O contato foi deletado com sucesso." };
                 return Ok(response);

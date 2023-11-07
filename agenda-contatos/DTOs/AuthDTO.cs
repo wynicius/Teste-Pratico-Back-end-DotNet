@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace agenda_contatos.DTOs
 {
-    public class UsuarioAuthDTO
+    public class AuthDTO
     {
         public int? Id { get; set; }
 
