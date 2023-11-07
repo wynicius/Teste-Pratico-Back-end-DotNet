@@ -1,10 +1,8 @@
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
 using agenda_contatos.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace agenda_contatos.DataAccess.Repository
+namespace agenda_contatos.DataAccess.Repositories
 {
     public class ContatoRepository : IContatoRepository
     {
@@ -14,8 +12,7 @@ namespace agenda_contatos.DataAccess.Repository
         public ContatoRepository(ApplicationDbContext context)
         {
             _context = context;
-            this.dbSet = _context.Set<Contato>();    
-
+            dbSet = _context.Set<Contato>();    
         }
 
         public async Task<List<Contato>> ListarTodosContatos()
@@ -29,7 +26,9 @@ namespace agenda_contatos.DataAccess.Repository
         {
             IQueryable<Contato> query = dbSet;
             query = query.Where(filter);
-            return await query.FirstOrDefaultAsync();
+            var contato = await query.FirstOrDefaultAsync()
+                ?? throw new NullReferenceException("O contato não foi encontrado.");
+            return contato;
         }
 
         public async Task AdicionarContato(Contato contato)

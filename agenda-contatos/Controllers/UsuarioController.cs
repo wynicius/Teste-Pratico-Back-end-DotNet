@@ -1,64 +1,86 @@
-// using Microsoft.AspNetCore.Mvc;
-// using Microsoft.Extensions.Configuration;
-// using Microsoft.IdentityModel.Tokens;
-// using System;
-// using System.IdentityModel.Tokens.Jwt;
-// using System.Security.Claims;
-// using System.Text;
-// using System.Threading.Tasks;
 
-// namespace agenda_contatos.Controllers
-// {
-//     [ApiController]
-//     [Route("[controller]")]
-//     public class UsuarioController : ControllerBase
-//     {
-//         private readonly IConfiguration _config;
+using agenda_contatos.Models;
+using agenda_contatos.DTOs;
+using agenda_contatos.DataAccess.Services;
+using Microsoft.AspNetCore.Mvc;
+using AutoMapper;
+
+namespace agenda_contatos.Controllers
+{
+    [Route("api/usuario")]
+    [ApiController]
+    public class UsuarioController : ControllerBase
+    {
+        private readonly IUsuarioService _iUsuarioService;
+        private readonly IMapper _mapper;
         
+        public UsuarioController(IUsuarioService iUsuarioService, IMapper mapper)
+        {
+            _iUsuarioService = iUsuarioService;
+            _mapper = mapper;
+        }
 
-//         public UsuarioController(IConfiguration config)
-//         {
-//             _config = config;
-//         }
+        [HttpPost]
+        [Route("criarUsuario")]
+        [Consumes("application/json")]
+        public async Task<IActionResult> Criar(Usuario usuario)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    await _iUsuarioService.AdicionarUsuario(usuario);
+                    var response = new { message = "O usuário foi criado com sucesso." };
+                    return Ok(response);
+                }
+                else
+                {
+                    return UnprocessableEntity(new {message = "Há algum erro com os dados enviados ou com o processamento deles."});
+                }
+            }
+            catch (Exception)
+            {
+                return BadRequest(ModelState );
+            }
+        }
 
-//         [HttpPost("criar")]
-//         public async Task<IActionResult> CriarUsuario([FromBody] Usuario usuario)
-//         {
-//             // TODO: Implement user creation logic here
+        [HttpGet]
+        [Route("listar/{email}")]
+        public async Task<IActionResult> ListarContatoPorEmail(string email)
+        {
+            var usuario = await _iUsuarioService.ListarUsuarioPorEmail(c => c.Email == email);
+            if (usuario == null)
+            {
+                return NotFound();
+            }
 
-//             return Ok();
-//         }
+            var usuarioDTO = _mapper.Map<UsuarioDTO>(usuario);
 
-//         [HttpPost("login")]
-//         public async Task<IActionResult> Login([FromBody] LoginRequest loginRequest)
-//         {
-//             // TODO: Implement login logic here
+            return Ok(usuarioDTO);
+        }
 
-//             // Check if user exists
-//             if (loginRequest.Username == "exampleuser" && loginRequest.Password == "examplepassword")
-//             {
-//                 // Create JWT token
-//                 var tokenHandler = new JwtSecurityTokenHandler();
-//                 var key = Encoding.ASCII.GetBytes(_config["Jwt:Secret"]);
-//                 var tokenDescriptor = new SecurityTokenDescriptor
-//                 {
-//                     Subject = new ClaimsIdentity(new Claim[]
-//                     {
-//                         new Claim(ClaimTypes.Name, loginRequest.Username)
-//                     }),
-//                     Expires = DateTime.UtcNow.AddDays(7),
-//                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-//                 };
-//                 var token = tokenHandler.CreateToken(tokenDescriptor);
-//                 var tokenString = tokenHandler.WriteToken(token);
+        [HttpDelete]
+        [Route("excluir/{id}")]
+        public async Task<IActionResult> Excluir(int id)
+        {
+            try
+            {
+                var usuario = await _iUsuarioService.ListarUsuarioPorEmail(u => u.Id == id);
 
-//                 return Ok(new { Token = tokenString });
-//             }
-//             else
-//             {
-//                 return Unauthorized();
-//             }
-//         }
-//     }
+                if (usuario == null)
+                {
+                    return NotFound();
+                }
 
-// }
+                await _iUsuarioService.ExcluirUsuario(usuario);
+
+                var response = new { message = "O usuário foi deletado com sucesso." };
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+    }
+}

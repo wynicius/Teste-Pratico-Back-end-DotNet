@@ -10,6 +10,7 @@ C:\Users\User1\Desktop\agenda-contatos\agenda-contatos\bin\Debug\net7.0\AutoMapp
 C:\Users\User1\Desktop\agenda-contatos\agenda-contatos\bin\Debug\net7.0\Azure.Core.dll
 C:\Users\User1\Desktop\agenda-contatos\agenda-contatos\bin\Debug\net7.0\Azure.Identity.dll
 C:\Users\User1\Desktop\agenda-contatos\agenda-contatos\bin\Debug\net7.0\Humanizer.dll
+C:\Users\User1\Desktop\agenda-contatos\agenda-contatos\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\User1\Desktop\agenda-contatos\agenda-contatos\bin\Debug\net7.0\Microsoft.AspNetCore.OpenApi.dll
 C:\Users\User1\Desktop\agenda-contatos\agenda-contatos\bin\Debug\net7.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\User1\Desktop\agenda-contatos\agenda-contatos\bin\Debug\net7.0\Microsoft.Data.SqlClient.dll

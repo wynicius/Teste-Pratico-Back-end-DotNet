@@ -1,11 +1,15 @@
 using agenda_contatos.Models;
 using agenda_contatos.DataAccess;
-using agenda_contatos.DataAccess.Repository;
+using agenda_contatos.DataAccess.Repositories;
 using agenda_contatos.DataAccess.Services;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Serilog.Sinks.File;
 using agenda_contatos.Mappings;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using agenda_contatos;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,9 +23,16 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 );
 builder.Services.AddScoped<IContatoRepository, ContatoRepository>();
 builder.Services.AddScoped<IContatoService, ContatoService>();
-builder.Services.AddAutoMapper(typeof(EntitiesToDTOMappingProfile));
+builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 
-string logpath = builder.Configuration.GetSection("Logging:Logpath").Value;
+builder.Services.AddTransient<TokenService>();
+builder.Services.AddAutoMapper(typeof(EntitiesToDTOMappingProfile));
+builder.Services.AddCors();
+
+string logpath = builder.Configuration.GetSection("Logging:Logpath").Value
+    ?? "logs/log.txt";
 var _logger = new LoggerConfiguration()
     .MinimumLevel.Information()
     .MinimumLevel.Override("microsoft", Serilog.Events.LogEventLevel.Warning)
@@ -29,6 +40,29 @@ var _logger = new LoggerConfiguration()
     .WriteTo.File(logpath)
     .CreateLogger();
 builder.Logging.AddSerilog(_logger);
+
+
+var key = Encoding.ASCII.GetBytes(Configuration.Secret);
+builder.Services
+    .AddAuthentication(x =>
+    {
+        x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    })
+    .AddJwtBearer(x =>
+    {
+        x.RequireHttpsMetadata = false;
+        x.SaveToken = true;
+        x.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = false,
+            ValidateAudience = false,
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(key),
+            ValidateLifetime = true,
+        };
+    })
+;
 
 var app = builder.Build();
 
@@ -39,9 +73,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-
 app.UseHttpsRedirection();
 
+app.UseCors(x => x
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader());
+
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
