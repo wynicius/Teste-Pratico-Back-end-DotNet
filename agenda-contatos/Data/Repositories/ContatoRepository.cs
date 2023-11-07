@@ -12,7 +12,7 @@ namespace agenda_contatos.DataAccess.Repositories
         public ContatoRepository(ApplicationDbContext context)
         {
             _context = context;
-            this.dbSet = _context.Set<Contato>();    
+            dbSet = _context.Set<Contato>();    
         }
 
         public async Task<List<Contato>> ListarTodosContatos()

@@ -16079,3 +16079,4 @@ FROM [Contatos] AS [c]
 2023-11-07 01:28:54.100 -03:00 [INF] Executed action agenda_contatos.Controllers.ContatoController.ListarTodosContatos (agenda-contatos) in 15.0885ms
 2023-11-07 01:28:54.100 -03:00 [INF] Executed endpoint 'agenda_contatos.Controllers.ContatoController.ListarTodosContatos (agenda-contatos)'
 2023-11-07 01:28:54.100 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5298/api/listartodos - - - 200 - application/json;+charset=utf-8 18.1518ms
+2023-11-07 02:10:33.176 -03:00 [INF] Application is shutting down...

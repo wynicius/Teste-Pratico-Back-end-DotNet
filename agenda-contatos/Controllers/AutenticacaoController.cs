@@ -3,9 +3,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using agenda_contatos.DataAccess.Services;
 using agenda_contatos.DataAccess.Repositories;
-using System.Text;
-using System.Text.Json;
-using AutoMapper;
 using agenda_contatos.DTOs;
 
 namespace agenda_contatos.Controllers

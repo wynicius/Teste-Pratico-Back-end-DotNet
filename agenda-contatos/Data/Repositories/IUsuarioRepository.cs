@@ -10,7 +10,6 @@ namespace agenda_contatos.DataAccess.Repositories
         Task<List<Usuario>> ListarTodosUsuarios();
         Task<Usuario> ListarUsuarioPorEmail(Expression<Func<Usuario,bool>> filter);
 
-        // Task AtualizarContato(Usuario contato);
     }
 }
  

@@ -33,10 +33,5 @@ namespace agenda_contatos.DataAccess.Services
         {
             return await _iUsuarioRepository.ListarUsuarioPorEmail(filter);
         }
-
-        // public async Task AtualizarContato(Contato contato)
-        // {
-        //     await _contatoRepository.AtualizarContato(contato);
-        // }
     }
 }

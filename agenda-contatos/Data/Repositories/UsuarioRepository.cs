@@ -12,7 +12,7 @@ namespace agenda_contatos.DataAccess.Repositories
         public UsuarioRepository(ApplicationDbContext context)
         {
             _context = context;
-            this.dbSet = _context.Set<Usuario>();    
+            dbSet = _context.Set<Usuario>();    
         }
 
         public async Task AdicionarUsuario(Usuario usuario)
@@ -42,12 +42,5 @@ namespace agenda_contatos.DataAccess.Repositories
                 ?? throw new NullReferenceException("O usuário não foi encontrado.");
             return usuario;
         }
-
-        // public async Task AtualizarUsuario(Usuario usuario)
-        // {
-        //     _context.Usuarios.Update(usuario);
-        //     await _context.SaveChangesAsync();
-        // }
-
     }
 }

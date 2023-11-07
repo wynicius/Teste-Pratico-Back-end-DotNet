@@ -31,10 +31,10 @@ namespace agenda_contatos.DataAccess
 
             modelBuilder.Entity<Usuario>().HasData(
                 new Usuario { 
-                    Id = 1, NomeDeUsuario = "Joaquim Maria Machado de Assis", Email = "machadodass__s@gmail.com", Telefone = "81984579681", Senha = "123456", Role = "Admin"
+                    Id = 1, NomeDeUsuario = "Joaquim Maria Machado de Assis", Email = "machadodass__s@gmail.com", Telefone = "81984579681", Senha = "123456", Role = "administrador"
                 },
                 new Usuario { 
-                    Id = 2, NomeDeUsuario = "José de Sousa Saramago", Email = "saramago22@outlook.com", Senha = "123456", Telefone = "83968495352", Role = "Usuario"
+                    Id = 2, NomeDeUsuario = "José de Sousa Saramago", Email = "saramago22@outlook.com", Senha = "123456", Telefone = "83968495352", Role = "usuario"
                 }
             );
         }
