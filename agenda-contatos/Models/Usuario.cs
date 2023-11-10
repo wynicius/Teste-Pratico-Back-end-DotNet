@@ -19,7 +19,7 @@ namespace agenda_contatos.Models
         public string? Telefone { get; set; }
 
         [Required(ErrorMessage = "Ter uma senha é obrigatório.")]
-        [StringLength(20, MinimumLength = 6, ErrorMessage = "O campo Senha deve ter entre 6 e 20 caracteres.")]
+        [StringLength(20, MinimumLength = 6, ErrorMessage = "O campo Senha deve ter entre 6 e 20 caracteres, entre letras, números e caracteres.")]
         public string? Senha { get; set; }
         public string? Role { get; set; }
     }

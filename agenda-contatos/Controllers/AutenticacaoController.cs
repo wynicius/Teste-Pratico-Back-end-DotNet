@@ -45,13 +45,15 @@ namespace agenda_contatos.Controllers
                     }
                 );
             }
-            catch (NullReferenceException ex)
+            catch (NullReferenceException)
             {
-                return NotFound(ex.Message);
+                var response = new { message = "Usuário ou senha inválidos" };
+                return NotFound(response);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return BadRequest(ex.Message);
+                var response = new { message = "Por favor, verifique os dados" };
+                return BadRequest(response);
             }
         }
 

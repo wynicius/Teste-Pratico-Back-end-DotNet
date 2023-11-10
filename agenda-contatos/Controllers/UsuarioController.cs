@@ -40,7 +40,7 @@ namespace agenda_contatos.Controllers
             }
             catch (Exception)
             {
-                return BadRequest(ModelState );
+                return BadRequest(ModelState);
             }
         }
 
